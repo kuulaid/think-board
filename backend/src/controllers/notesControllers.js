@@ -64,7 +64,7 @@ export async function deleteNote (req, res) {
      try {
         
         const {title, content} = req.body
-        const deletedNote = await Note.findByIdAndUpdate(req.params.id,{title, content}, {new: true});
+        const deletedNote = await Note.findByIdAndDelete(req.params.id,{title, content}, {new: true});
         
         if(!deletedNote) return res.status(404).json({message: "Note not found"});
         res.status(200).json({message: "Note deleted succesfully"});
